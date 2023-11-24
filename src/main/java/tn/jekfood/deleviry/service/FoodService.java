@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.jekfood.deleviry.model.Food;
 import tn.jekfood.deleviry.repository.FoodRepository;
+
 @Service 
 public class FoodService {
 	@Autowired  
-	FoodRepository FR; 
+	FoodRepository FR;
+	@Autowired  
+	RestaurantService RS;
 
 	//defining the business logic
 
@@ -39,6 +42,17 @@ public class FoodService {
 	{  
 		FR.deleteById(id);  
 	} 
+	
+	
+	public List<Food> getAllFoodsByIdRestaurant(int id )   
+	{  
+		List<Food> Foods = new ArrayList<Food>();  
+		FR.findAllByRestaurant(RS.getRestaurantsById(id)).forEach(f -> Foods.add(f)); 
+		return Foods;  	
+	}  
+
+	
+	
 }
 
 

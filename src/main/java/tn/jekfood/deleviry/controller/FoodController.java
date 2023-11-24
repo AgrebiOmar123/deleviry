@@ -57,6 +57,12 @@ public class FoodController {
 					Fs.saveOrUpdate(f);  
 					return f;  
 				}  
+				@GetMapping("/foodbyrestaurant/{id}")  
+				private List<Food> getFoodByRestaurant(@PathVariable("id") int idrestaurant)   
+				{  
+					return Fs.getAllFoodsByIdRestaurant(idrestaurant);  
+				}  
+
 }
 
 
